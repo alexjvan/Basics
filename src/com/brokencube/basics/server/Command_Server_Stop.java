@@ -1,27 +1,25 @@
 package com.brokencube.basics.server;
 
-import com.brokencube.api.API;
 import com.brokencube.api.command.Command;
-import com.brokencube.api.user.Console;
+import com.brokencube.api.command.SubCommand;
+import com.brokencube.api.command.exceptions.CommandNotFoundException;
+import com.brokencube.api.command.exceptions.IncorrectArgumentsException;
+import com.brokencube.api.command.exceptions.NoPermsException;
 import com.brokencube.api.user.Executor;
-import com.brokencube.api.user.User;
 
-public class Command_Server_Stop extends Command {
-	
-	public Command_Server_Stop(API api) {
-		//	  api  command         description         perm             use case
-		super(api, "server stop", "Stop the server.", "server.stop", "/server stop");
+public class Command_Server_Stop extends SubCommand {
+	public Command_Server_Stop(Command parent) {
+		super(parent, "server.stop");
 	}
-	
-	public void userExe(User u, String[] args) {
-		exe(u, args);
-	}
-	
-	public void consoleExe(Console c, String[] args) {
-		exe(c, args);
-	}
-	
-	private void exe(Executor e, String[] args) {
+
+	@Override
+	public void exe(Executor e, String[] split) throws CommandNotFoundException, IncorrectArgumentsException, NoPermsException {
+		if(!e.hasPermission(permString))
+			throw new NoPermsException();
+		
+		if(split.length != 2)
+			throw new IncorrectArgumentsException();
+		
 		instance.getServer().shutdown();
 	}
 
