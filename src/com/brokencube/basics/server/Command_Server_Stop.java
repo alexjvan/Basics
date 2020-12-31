@@ -10,6 +10,8 @@ import com.brokencube.api.user.Executor;
 public class Command_Server_Stop extends SubCommand {
 	public Command_Server_Stop(Command parent) {
 		super(parent, "server.stop");
+		this.useCase = "/server stop";
+		this.description = "Stop the server.";
 	}
 
 	@Override

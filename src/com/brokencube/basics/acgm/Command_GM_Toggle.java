@@ -16,6 +16,8 @@ public class Command_GM_Toggle extends SubCommand {
 	
 	public Command_GM_Toggle(Command parent) {
 		super(parent, "gm.toggle");
+		this.useCase = "/gm toggle [self|<username>]";
+		this.description = "Toggle your, or another player's, gamemode.";
 	}
 	
 	@Override

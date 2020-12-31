@@ -16,6 +16,8 @@ public class Command_GM extends Command {
 		super(api, "gamemode");
 		addAlternative("gm");
 		this.toggle = new Command_GM_Toggle(this);
+		this.useCase = "/gamemode(gm) help";
+		this.description = "All gamemode related commands.";
 	}
 	
 	@Override

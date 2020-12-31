@@ -13,7 +13,8 @@ public class Command_Server extends Command {
 	public Command_Server(API api) {
 		super(api, "server");
 		this.stop = new Command_Server_Stop(this);
-		addChild(this.stop);
+		this.useCase = "/server help";
+		this.description = "All server related commands.";
 	}
 
 	@Override
